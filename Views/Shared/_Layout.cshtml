@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AgroSoft</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="all,follow">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="~/Design/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="~/Design/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="~/Design/css/fontastic.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="~/Design/css/grasp_mobile_progress_circle-1.0.0.min.css">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="~/Design/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="~/Design/css/style.default.css" id="themestylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="~/Design/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/Design/img/ico.ico">
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    <!--Alerta Sweet-->
+    <script type="text/javascript" src="/Scripts/sweetalert.min.js"></script>
+    <!--Alerta Sweet 2.0-->
+    <script type="text/javascript" src="/Scripts/sweetalert2.all.min.js"></script>
+
+    <script type="text/javascript">
+        function sweetalert(Title, Text, icon) {
+            Swal.fire({
+                title: Title,
+                text: Text,
+                type: icon,
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function ToastSweetAlert(Type, Titulo) {
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            Toast.fire({
+                type: Type,
+                title: Titulo
+            });
+        }
+    </script>
+
+
+
+</head>
+<body>
+    <nav class="side-navbar">
+        <div class="side-navbar-wrapper">
+            <!-- Sidebar Header-->
+            <div class="sidenav-header d-flex align-items-center justify-content-center">
+                <!-- User Info-->
+                <div class="sidenav-header-inner text-center">
+                    <img src="~/Resources/avatar-default.png" alt="person" class="img-fluid rounded-circle">
+                    <h2 class="h5"></h2>
+                    <span></span>
+                </div>
+                <!-- Small Brand information, appears on minimized sidebar-->
+                <div class="sidenav-header-logo"><a href="/Default.aspx" class="brand-small text-center"><strong>A</strong><strong class="text-primary">S</strong></a></div>
+            </div>
+            <!-- Sidebar Navigation Menus-->
+            <div class="main-menu">
+                <h5 class="sidenav-heading">Menu Principal</h5>
+                <ul id="side-main-menu" class="side-menu list-unstyled">
+                    <li class="active">
+                        <a href="#"><i class="icon-home"></i>Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#TipoArrozDropDown" aria-expanded="false" data-toggle="collapse"><i class="fas fa-tree"></i>Tipo de Arroz</a>
+                        <ul id="TipoArrozDropDown" runat="server" class="collapse list-unstyled ">
+                            <li><a href="@Url.Action("Create","TipoArroz")"><i class="fas fa-plus-circle"></i>Nuevo</a></li>
+                            <li><a href="@Url.Action("Index","TipoArroz")"><i class="fa fa-bar-chart"></i>Consultar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#ProductoresDropDown" aria-expanded="false" data-toggle="collapse"><i class="far fa-user"></i>Productores</a>
+                        <ul id="ProductoresDropDown" runat="server" class="collapse list-unstyled ">
+                            <li><a href="#"><i class="fas fa-plus-circle"></i>Nuevo</a></li>
+                            <li><a href="#"><i class="fas fa-weight-hanging"></i>Consultar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#FactoriasDropDown" aria-expanded="false" data-toggle="collapse"><i class="fas fa-industry"></i>Factorias</a>
+                        <ul id="FactoriasDropDown" runat="server" class="collapse list-unstyled ">
+                            <li><a href="#"><i class="fas fa-plus-circle"></i>Nuevo</a></li>
+                            <li><a href="#"><i class="fas fa-weight-hanging"></i>Consultar</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#PesadasDropDown" aria-expanded="false" data-toggle="collapse"><i class="fas fa-weight-hanging"></i>Pesadas</a>
+                        <ul id="PesadasDropDown" class="collapse list-unstyled ">
+                            <li><a href="#"><i class="fas fa-plus-circle"></i>Nuevo</a></li>
+                            <li><a href="#"><i class="fas fa-weight-hanging"></i>Consultar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="ModuloUsuarios" class="admin-menu">
+                <h5 class="sidenav-heading">Panel Administrativo</h5>
+                <ul id="side-admin-menu" class="side-menu list-unstyled">
+                    <li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-interface-windows"></i>Usuarios </a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                            <li><a href="#"><i class="fas fa-users"></i>Registro de usuarios</a></li>
+                            <li><a href="#"><i class="fas fa-users"></i>Consulta de Usuarios</a></li>
+                            <li><a href="#"><i class="icon-mail"></i>Ver Solicitudes</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="page">
+        <!-- navbar-->
+        <header class="header">
+            <nav class="navbar">
+                <div class="container-fluid body-content">
+                    <div class="navbar-holder d-flex align-items-center justify-content-between">
+                        <div class="navbar-header">
+                            <a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"></i></a><a href="#" class="navbar-brand">
+                                <div class="brand-text d-none d-md-inline-block"><strong class="text-primary">Panel de Control</strong></div>
+                            </a>
+                        </div>
+                        <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                            <!-- Log out-->
+                            <li class="nav-item"><a id="LogOut" class="nav-link logout"><span class="d-none d-sm-inline-block">Cerrar Sesión</span><i class="fa fa-sign-out"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- Breadcrumb-->
+        <div class="breadcrumb-holder">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Default.aspx">Home</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid body-content">
+            @RenderBody()
+            @if (ViewBag.JSF != null)
+            {
+                <script type="text/javascript">
+                        @Html.Raw(ViewBag.JSF)
+                </script>
+            }
+        </div>
+        <footer class="main-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>&copy; @DateTime.Now.Year - AgroSoft</p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <p>Design by <a href="https://bootstrapious.com/p/bootstrap-4-dashboard" class="external">Bootstrapious</a></p>
+                        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+        @*<script src="~/Design/vendor/jquery/jquery.min.js"></script>*@
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="~/Design/vendor/jquery-validation/jquery.validate.min.js"></script>
+        <script src="~/Design/vendor/popper.js/umd/popper.min.js"></script>
+        <script src="~/Design/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/Design/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+        <script src="~/Design/vendor/jquery.cookie/jquery.cookie.js"></script>
+        <script src="~/Design/vendor/chart.js/Chart.min.js"></script>
+        <script src="~/Design/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="~/Design/js/avatar.js"></script>
+        <script src="https://kit.fontawesome.com/6fa1d42f74.js"></script>
+        <!-- Main File-->
+        <script src="/Design/js/front.js"></script>
+
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Entidades.TipoArroz>
+
+@{
+    ViewBag.Title = "Consulta de Tipo de Arroz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-info btn-lg" })
+</p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header ">
+                <strong>@ViewBag.Title</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-5 col-md-5">
+                        <div class="form-group">
+                            <label for="FiltrarPor">Filtrar Por</label>
+                            <select class="form-control custom-select" id="FiltrarPor" name="Filtro">
+                                <option value="0">Todos</option>
+                                <option value="1">Descripcion</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-7 col-md-7 ">
+                        <div class="form-group">
+                            <label for="CriterioTextBox">Criterio</label>
+                            <div class="input-group">
+                                <input type="text" id="CriterioTextBox" placeHolder="Criterio de Busqueda" class="form-control" />
+                                <div class="input-group-append">
+                                    <button id="BuscarButton" class="btn btn-info">
+                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="i-checks">
+                        <input id="FiltrarPorFechaCB" type="checkbox" name="filtro" checked="checked" value="1" class="form-control-custom">
+                        <label for="FiltrarPorFechaCB"><strong>Filtrar por Fecha</strong></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="FechaDesdeTxt">Desde</label>
+                            <input id="FechaDesdeTxt" type="date" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="FechaHastaTxt">Hasta</label>
+                            <input id="FechaHastaTxt" type="date" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="DatosTable">
+                    @Html.Partial("_TipoArrozSearch",Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#BuscarButton").click(function () {
+               debugger;
+                 var Json = { 'filtroPor': $("#FiltrarPor :selected").val(), 'criterio': $("#CriterioTextBox").val(), 'filtraPorFecha': $("#FiltrarPorFechaCB").is(":checked"),'desde':$("#FechaDesdeTxt").val(),'hasta':$("#FechaHastaTxt").val()  };
+                $.ajax({
+                    method: 'POST',
+                    url: '@Url.Action("Busqueda","TipoArroz")',
+                    dataType: 'json',
+                    data: JSON.stringify(Json) ,
+                    success: function (result) {
+                        console.log('HOla');
+                        $('#DatosTable').html(result);
+                    },
+                    error: function (ex) {
+                        console.log('MAL');
+                        console.log(ex);
+                        $('#DatosTable').html(ex.responseText);
+                    }
+                })
+            });
+        });
+    </script>
+}

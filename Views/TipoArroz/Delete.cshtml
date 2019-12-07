@@ -1,0 +1,63 @@
+﻿@model Entidades.TipoArroz
+
+@{
+    ViewBag.Title = "Eliminando tipo arroz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header ">
+                <strong>@ViewBag.Title</strong>
+            </div>
+            <div class="card-body">
+                <div>
+                    <dl class="dl-horizontal">
+                       
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </dt>
+
+                        <dd class="ml-4">
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Kilos)
+                        </dt>
+
+                        <dd class="ml-4">
+                            @Html.DisplayFor(model => model.Kilos)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </dt>
+
+                        <dd class="ml-4">
+                            @Html.DisplayFor(model => model.Fecha)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="text-left">
+                    <div class="form-group" display: inline-block>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <button type="submit" value="Eliminar" class="btn btn-danger btn-lg">Eliminar</button>
+                                @Html.ActionLink("Volver a la consulta", "Index",null, new { @class = "btn btn-warning btn-lg"  })
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
